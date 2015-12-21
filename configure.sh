@@ -7,7 +7,7 @@ apt-get -qq -y update
 apt-get -qq -y upgrade
 
 # install shell tools
-apt-get -qq -y install vim-nox tmux git curl nmap zip unzip
+apt-get -qq -y install vim-nox tmux git nmap zip unzip
 
 # install build tools
 apt-get -qq -y install build-essential cmake pkg-config
@@ -85,10 +85,12 @@ ufw allow 22/tcp
 # manually run 'sudo ufw enable' and 'sudo shutdown -r now'
 
 # install dynamic dns update (for noip service)
-#cd /usr/src
-#wget http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz
-#tar xzf noip-duc-linux.tar.gz
-#rm -rf noip-duc-linux.tar.gz
+cd /usr/src
+wget http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz
+tar xzf noip-duc-linux.tar.gz
+rm -rf noip-duc-linux.tar.gz
+
+# XXX do this after install / add to readme
 #cd no-ip-2.1.9
 # make
 # make install
