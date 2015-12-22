@@ -1,8 +1,6 @@
 Scripts and configurations for building a HLS streaming web cam server with
-a Raspberry Pi 2 and a Logitech C920 webcam.
-
-I'm using a Rasberry Pi 2 and Logitech C920 webcam.  This setup as it is is
-specific to this device and camera combination.
+a Raspberry Pi 2 and a Logitech C920 webcam. The configuration/scripts included
+are specific to this device and camera combination.
 
 I start of by writing the Raspberian image to a micro SD card to use. I'm doing
 this on a Windows desktop with a tool called Win32DiskImager. I also found it
@@ -65,7 +63,6 @@ to configure the No-IP client (optionally)
 
     cd /usr/src/noip-2.1.9-1
     make && make install
-
 
 
 Vic Garcia | http://vicg4rcia.com
