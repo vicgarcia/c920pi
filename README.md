@@ -4,12 +4,9 @@ a Raspberry Pi 2 and a Logitech C920 webcam.
 I'm using a Rasberry Pi 2 and Logitech C920 webcam.  This setup as it is is
 specific to this device and camera combination.
 
-I start of by writing the Raspberian image to a micro SD card to use.
-
-I'm doing this on a Windows desktop with a tool called Win32DiskImager.
-
-I found it helpful to use my television as a monitor and plug in an HDMI cable
-into the Raspberry Pi.  I also have a USB wireless keyboard that I used.
+I start of by writing the Raspberian image to a micro SD card to use. I'm doing
+this on a Windows desktop with a tool called Win32DiskImager. I also found it
+helpful to use my TV and a wireless USB keyboard to perform the initial install.
 
 On the first boot, you will need to run throught the Raspberian config utility.
 During this configuration, I opt to expand the filesystem, enable the SSH server,
@@ -39,8 +36,8 @@ My configuration in /etc/network/interfaces looks like this :
         wpa-ssid "ssid for wifi network here"
         wpa-psk "password for wifi network here"
 
-The configure.sh script provided in the repository can be used from here
-to complete the installation of the software necessary for the rest of the
+The install.sh script provided in the repository is used from here to
+complete the installation of the software necessary for the rest of the
 streaming webcam stack.
 
 The easiest way to run this script is the old curl | bash
@@ -64,7 +61,7 @@ After running this script, there will be some manual configuration required
 to configure and enable the No IP dynamic dns updater.  If this is something
 you want to use, you have to perform this.
 
-Configure the No-IP client (optionally)
+to configure the No-IP client (optionally)
 
     cd /usr/src/noip-2.1.9-1
     make && make install
