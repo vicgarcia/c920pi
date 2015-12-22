@@ -44,8 +44,10 @@ gcc c920.c -o /usr/local/bin/c920
 # http://nerdlogger.com/2013/11/09/streaming-1080p-video-using-raspberry-pi-or-beaglebone-black/
 
 # download capture script
-curl -o /home/pi/capture.sh https://raw.githubusercontent.com/vicgarcia/c920pi/master/capture.sh
-chmod +x /home/pi/capture.sh
+mkdir /home/pi/c920pi
+curl -o /home/pi/c920pi/capture.sh https://raw.githubusercontent.com/vicgarcia/c920pi/master/capture.sh
+chmod +x /home/pi/c920pi/capture.sh
+chown -R pi:pi /home/pi/c920pi/capture.sh
 
 # create path for video hls files
 mkdir -p /c920pi
@@ -57,7 +59,7 @@ apt-get -qq -y install nginx
 # configure basic nginx server
 cat > /etc/nginx/sites-available/default << DELIM
 server {
-
+    listen 80;
     root /c920pi;
     location / { }
 }
@@ -69,7 +71,7 @@ apt-get -qq -y install supervisor
 # config file for supervisor to manage capture.sh
 cat > /etc/supervisor/conf.d/c920pi.conf << DELIM
 [program:c920pi]
-command=/home/pi/capture.sh
+command=/home/pi/c920pi/capture.sh
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/c920pi.log
@@ -78,23 +80,11 @@ DELIM
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps
 
-# setup firewall
-ufw allow 80/tcp
-ufw allow 22/tcp
-
-# the firewall will have to be enabled and the raspberry pi restart
-# manually run 'sudo ufw enable' and 'sudo shutdown -r now'
-
 # install dynamic dns update (for noip service)
 cd /usr/src
 wget http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz
 tar xzf noip-duc-linux.tar.gz
 rm -rf noip-duc-linux.tar.gz
-
-# XXX do this after install / add to readme
-#cd no-ip-2.1.9
-# make
-# make install
 
 # make && make install will run the config script
 # run this manually after running this setup script

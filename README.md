@@ -45,7 +45,7 @@ streaming webcam stack.
 
 The easiest way to run this script is the old curl | bash
 
-    curl https://raw.githubusercontent.com/vicgarcia/c920pi/master/configure.sh | sh
+    curl https://raw.githubusercontent.com/vicgarcia/c920pi/master/install.sh | sh
 
 This script will :
 * perform apt update/upgrade
@@ -53,23 +53,18 @@ This script will :
 * install all of the necessary build tools
 * download source, compile, and install x264 and ffmpeg
 * install v4l (video 4 linux) drivers and utilities with apt
-* download and compile the repository's c920.c camera utility
-* download and install the repository's capture.sh capture script
+* download and compile this repository's c920.c camera utility
+* download and install this repository's capture.sh capture script
 * create the filesystem path w/ permissions for hls video files
 * install nginx and configure to serve the hls video stream
 * install supervisor and configure to run the capture script
-* setup firewall and dynamic dns update utility
+* setup dynamic dns update utility for No-IP (noip.com)
 
 After running this script, there will be some manual configuration required
-to get everything to run the streaming server. Make sure to run these as root.
+to configure and enable the No IP dynamic dns updater.  If this is something
+you want to use, you have to perform this.
 
-XXX check into installing firewall
-
-The firewall will have to be enabled
-
-    ufw enable
-
-Then configure the No-IP client (optionally)
+Configure the No-IP client (optionally)
 
     cd /usr/src/noip-2.1.9-1
     make && make install
