@@ -55,8 +55,9 @@ chown -R pi:pi /c920pi
 apt-get -qq -y install nginx
 
 # configure basic nginx server
-cat > /etc/nginx/sitex-available/default << DELIM
+cat > /etc/nginx/sites-available/default << DELIM
 server {
+
     root /c920pi;
     location / { }
 }

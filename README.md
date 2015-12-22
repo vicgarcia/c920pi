@@ -11,8 +11,10 @@ I'm doing this on a Windows desktop with a tool called Win32DiskImager.
 I found it helpful to use my television as a monitor and plug in an HDMI cable
 into the Raspberry Pi.  I also have a USB wireless keyboard that I used.
 
-
 On the first boot, you will need to run throught the Raspberian config utility.
+During this configuration, I opt to expand the filesystem, enable the SSH server,
+and configure the device for a US keyboard. When prompted, I typically will opt
+not to reboot, instead doing so after configuring the wifi networking.
 
 Next, we will need to get the wireless (or wired) networking configured.  If
 you're using a wired connection with a DHCP assigned address this should work
@@ -37,14 +39,17 @@ My configuration in /etc/network/interfaces looks like this :
         wpa-ssid "ssid for wifi network here"
         wpa-psk "password for wifi network here"
 
-
 The configure.sh script provided in the repository can be used from here
 to complete the installation of the software necessary for the rest of the
 streaming webcam stack.
 
+The easiest way to run this script is the old curl | bash
+
+    curl https://raw.githubusercontent.com/vicgarcia/c920pi/master/configure.sh | sh
+
 This script will :
-* update apt and raspberian
-* install updated versions of vim and curl
+* perform apt update/upgrade
+* install vim, tmux, curl and curl
 * install all of the necessary build tools
 * download source, compile, and install x264 and ffmpeg
 * install v4l (video 4 linux) drivers and utilities with apt
@@ -56,9 +61,19 @@ This script will :
 * setup firewall and dynamic dns update utility
 
 After running this script, there will be some manual configuration required
-to get everything to run the streaming server.
+to get everything to run the streaming server. Make sure to run these as root.
 
-The dynamic dns capture utility will have to be configured and provided with
-the necessary credentials for
+XXX check into installing firewall
+
+The firewall will have to be enabled
+
+    ufw enable
+
+Then configure the No-IP client (optionally)
+
+    cd /usr/src/noip-2.1.9-1
+    make && make install
+
+
 
 Vic Garcia | http://vicg4rcia.com
