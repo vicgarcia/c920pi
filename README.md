@@ -44,7 +44,6 @@ The easiest way to run this script is the old curl | bash
 
 This script will :
 * perform apt update/upgrade
-* install vim, tmux, curl and curl
 * install all of the necessary build tools
 * download source, compile, and install x264 and ffmpeg
 * install v4l (video 4 linux) drivers and utilities with apt

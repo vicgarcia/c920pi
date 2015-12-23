@@ -6,11 +6,8 @@
 apt-get -qq -y update
 apt-get -qq -y upgrade
 
-# install shell tools
-apt-get -qq -y install vim-nox tmux git nmap zip unzip
-
 # install build tools
-apt-get -qq -y install build-essential cmake pkg-config
+apt-get -qq -y install git build-essential cmake pkg-config
 
 # install ffmpeg w/ h264 and hls support from source
 
@@ -59,7 +56,7 @@ apt-get -qq -y install nginx
 # configure basic nginx server
 cat > /etc/nginx/sites-available/default << DELIM
 server {
-    listen 80;
+    listen 8000;
     root /c920pi;
     location / { }
 }
