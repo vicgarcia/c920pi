@@ -56,12 +56,17 @@ This script will :
 
 After running this script, there will be some manual configuration required
 to configure and enable the No IP dynamic dns updater.  If this is something
-you want to use, you have to perform this.
-
-to configure the No-IP client (optionally)
+you want to use, you have to run this to install/configure to utility.
 
     cd /usr/src/noip-2.1.9-1
     make && make install
+
+After performing this installation, reboot the raspberry pi.  When the device
+reboots, the camera capture will be running and serving live video.
+
+You should be able to access this video in a browser at :
+
+    http://<ip or hostname of raspberry pi>:8000/video.m3u8
 
 
 Vic Garcia | http://vicg4rcia.com
