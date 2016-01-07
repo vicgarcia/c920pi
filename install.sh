@@ -9,6 +9,13 @@ apt-get -qq -y upgrade
 # install build tools
 apt-get -qq -y install git build-essential cmake pkg-config
 
+# install common linux cli tools
+apt-get -qq -y install vim-nox tmux curl zip unzip
+
+# install ack-grep, setup to run as 'ack'
+apt-get -qq -y install ack-grep
+dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
+
 # install ffmpeg w/ h264 and hls support from source
 
 # compile & install x264 (used w/ ffmpeg)
@@ -87,5 +94,4 @@ rm -rf noip-duc-linux.tar.gz
 # run this manually after running this setup script
 
 # http://www.noip.com/support/knowledgebase/installing-the-linux-dynamic-update-client/
-
 
