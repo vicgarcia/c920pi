@@ -54,19 +54,39 @@ This script will :
 * install supervisor and configure to run the capture script
 * setup dynamic dns update utility for No-IP (noip.com)
 
-After running this script, there will be some manual configuration required
-to configure and enable the No IP dynamic dns updater.  If this is something
-you want to use, you have to run this to install/configure to utility.
 
-    cd /usr/src/noip-2.1.9-1
-    make && make install
+After the script is run, you will need to set up a user for http authentication.
+
+    $ sudo htpasswd -c /etc/nginx/password <username>
+
+And finish configuration of your self-signed SSL certificate. Be sure to use the proper FQDN.
+
+    $ sudo su
+    $ cd /etc/nginx/ssl
+    $ openssl req -new -key server.key -out server.csr
+    $ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+
+I'd recommend also setting up your firewall with UFW.
+
+    $ sudo su
+    $ ufw allow https
+    $ ufw allow ssh
+    $ ufw enable
+
+If you would like to use the provided NoIP dynamic dns updater, you will need
+to compile and configure it.  This can be done like so.
+
+    $ sudo su
+    $ cd /usr/src/noip-2.1.9-1
+    $ make && make install
+    $ exit
 
 After performing this installation, reboot the raspberry pi.  When the device
 reboots, the camera capture will be running and serving live video.
 
 You should be able to access this video in a browser at :
 
-    http://<ip or hostname of raspberry pi>:8000/video.m3u8
+    https://<ip or hostname of raspberry pi>/video.m3u8
 
 
 Vic Garcia | http://vicg4rcia.com
