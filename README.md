@@ -31,6 +31,7 @@ My configuration in /etc/network/interfaces looks like this :
         address 10.10.10.80
         netmask 255.255.255.0
         gateway 10.10.10.1
+        dns-nameservers 8.8.8.8 8.8.4.4
         wpa-ssid "ssid for wifi network here"
         wpa-psk "password for wifi network here"
 
